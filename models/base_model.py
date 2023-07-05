@@ -1,33 +1,43 @@
 #!/usr/bin/python3
-'''module for basemodel'''
-
-
+"""Module for BaseModel"""
 import uuid
 from datetime import datetime
 
-'''create a basemodel'''
-
 
 class BaseModel:
-    '''A base model class with unbje modification'''
+    """Class Base : The "base” of all other classes"""
 
-    def __init__(self):
-        '''inizialize attribute id and datetime of an instance'''
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+        """Initialize a new Base
+
+        Args:
+            id (int): The identity of the new Base
+            *args (ints): New attribute values
+            **kwargs (dict): New attribute values
+        """
+        if not kwargs:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+        else:
+            for k, v in kwargs.items():
+                if k == "__class__":
+                    continue
+                if k == "updated_at" or k == "created_at":
+                    v = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
+                setattr(self, k, v)
 
     def __str__(self):
-        '''str function modified'''
+        """Return description of the class"""
         return ("[{}] ({}) {}".format(type(self).__name__,
                 self.id, self.__dict__))
 
     def save(self):
-        '''save and update time each time we save'''
+        """Updates attribute with the current datetime"""
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        '''return dict modified the keywords'''
+        """Returns the dictionary representation with modified keywords"""
         my_dict = self.__dict__
         my_dict["__class__"] = self.__class__.__name__
         my_dict["created_at"] = self.created_at.isoformat()

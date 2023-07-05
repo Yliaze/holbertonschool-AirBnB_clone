@@ -1,56 +1,55 @@
-#!/usr/bin.python3
-'''xclkfjhbwldik fubhnwd lkufn u'''
-
-
+#!/usr/bin/python3
 import unittest
 import uuid
-import datetime
-import time
+from datetime import datetime
 from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
-    '''UNITTEST DE LA CLASSE BASEMODEL'''
-
+    """Unittest for class BaseModel"""
     def setUp(self):
-        self.model = BaseModel()
+        """Set up for the tests"""
+        self.my_model = BaseModel()
 
-    def test_id_is_valid_uuid(self):
-        '''Vérifie si l'ID généré est un UUID valide'''
-        self.assertTrue(uuid.UUID(self.model.id, version=4))
+    def test_init(self):
+        """Test for initialization"""
+        self.assertTrue(isinstance(self.my_model, BaseModel))
+        self.assertIsInstance(self.my_model.id, str)
+        self.assertIsInstance(self.my_model.created_at, datetime)
+        self.assertIsInstance(self.my_model.updated_at, datetime)
 
-    def test_created_at_is_datetime(self):
-        '''Vérifie si created_at est un objet datetime'''
-        self.assertIsInstance(self.model.created_at, datetime.datetime)
+    def test_init_kwargs(self):
+        """Test for initialization with kwargs"""
+        id = str(uuid.uuid4())
+        created_at = datetime.now().isoformat()
+        updated_at = datetime.now().isoformat()
 
-    def test_updated_at_is_datetime(self):
-        '''Vérifie si updated_at est un objet datetime'''
-        self.assertIsInstance(self.model.updated_at, datetime.datetime)
+        model_with_kwargs = BaseModel(id=id,
+                                      created_at=created_at,
+                                      updated_at=updated_at)
 
-    def test_save_updates_updated_at(self):
-        '''Vérifie si la méthode save met à jour updated_at'''
-        previous_updated_at = self.model.updated_at
-        '''Attente d'une seconde pouorodatages'''
-        time.sleep(1)
-        self.model.save()
-        self.assertNotEqual(previous_updated_at, self.model.updated_at)
+        self.assertEqual(model_with_kwargs.id, id)
+        self.assertEqual(model_with_kwargs.created_at.isoformat(), created_at)
+        self.assertEqual(model_with_kwargs.updated_at.isoformat(), updated_at)
 
-    def test_to_dict_returns_dict(self):
-        '''Vérifie si to_dict() retourne un dictionnaire'''
-        result = self.model.to_dict()
-        self.assertIsInstance(result, dict)
+    def test_str(self):
+        """Test for str method"""
+        self.assertEqual(str(self.my_model), f"[BaseModel]\
+ ({self.my_model.id}) {self.my_model.__dict__}")
 
-    def test_to_dict_contains_required_keys(self):
-        '''Vérifie si to_dict() renvoiet les clés requises'''
-        result = self.model.to_dict()
-        required_keys = ["id", "__class__", "created_at", "updated_at"]
-        for key in required_keys:
-            self.assertIn(key, result)
+    def test_save(self):
+        """Test for save method"""
+        old_updated_at = self.my_model.updated_at
+        self.my_model.save()
+        self.assertNotEqual(old_updated_at, self.my_model.updated_at)
 
-    def test_str_returns_string(self):
-        '''Vérifie si __str__() retourne une chaîne de caractères'''
-        result = str(self.model)
-        self.assertIsInstance(result, str)
+    def test_to_dict(self):
+        """Test for to_dict method"""
+        model_dict = self.my_model.to_dict()
+        self.assertEqual(model_dict["__class__"], "BaseModel")
+        self.assertEqual(model_dict["id"], self.my_model.id)
+        self.assertIsInstance(model_dict["created_at"], str)
+        self.assertIsInstance(model_dict["updated_at"], str)
 
 
 if __name__ == '__main__':
