@@ -69,6 +69,22 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** instance id missing **")
 
+    def do_all(self, args):
+
+        dictionnary = storage.all()
+        new_list = []
+        if args == "":
+            for value in dictionnary:
+                new_list.append(str(dictionnary[value]))
+            print(new_list)
+        else:
+            if args not in dictionnary:
+                print("** class doesn't exist **")
+            for value in dictionnary:
+                if args == value:
+                    new_list.append(str(dictionnary[value]))
+                    print(new_list)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
