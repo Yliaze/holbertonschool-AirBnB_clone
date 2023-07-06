@@ -9,14 +9,15 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     def do_EOF(self, line):
-        'Quit command to exit the program\n'
+        """Quit command to exit the program\n"""
         return True
 
     def do_quit(self, line):
-        'Quit command to exit the program\n'
+        """Quit command to exit the program\n"""
         return True
 
     def emptyline(self):
+        """Print an empty line\n"""
         pass
 
 
