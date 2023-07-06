@@ -23,11 +23,10 @@ class BaseModel:
             storage.new(self)
         else:
             for k, v in kwargs.items():
-                if k == "__class__":
-                    continue
                 if k == "updated_at" or k == "created_at":
                     v = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
-                setattr(self, k, v)
+                if k != '__class__':
+                    setattr(self, k, v)
 
     def __str__(self):
         """Return description of the class"""
@@ -42,7 +41,7 @@ class BaseModel:
 
     def to_dict(self):
         """Returns the dictionary representation with modified keywords"""
-        my_dict = self.__dict__
+        my_dict = self.__dict__.copy()
         my_dict["__class__"] = self.__class__.__name__
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
