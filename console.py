@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-import cmd
-
 """contains the entry point of the command interpreter"""
+import cmd
 
 
 class HBNBCommand(cmd.Cmd):
     """command line interpreter"""
+
     prompt = '(hbnb) '
 
     def do_EOF(self, line):
