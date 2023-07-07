@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
                 instance = storage.all()
                 concat = list_arg[0] + '.' + list_arg[1]
                 print(instance[concat])
-            except ValueError:
+            except KeyError:
                 print("** no instance found **")
         else:
             print("** instance id missing **")
