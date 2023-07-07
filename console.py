@@ -85,6 +85,37 @@ class HBNBCommand(cmd.Cmd):
                     new_list.append(str(dictionnary[value]))
                     print(new_list)
 
+    def do_update(self, args):
+        """ Update an instance """
+        list_arg = args.split(" ")
+        print("LIST DE PUTAIN D'ARGS = ", list_arg)
+        my_dictionnary = storage.all()
+        try:
+            concat = str(list_arg[0]) + "." + str(list_arg[1])
+        except:
+            concat = "None"
+            list_arg.append("")
+
+        if list_arg[0] == "":
+            print("** class name missing **")
+        elif list_arg[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        elif list_arg[1] == "":
+            print("** instance id missing **")
+        elif concat not in my_dictionnary:
+            print("** no instance found **")
+        elif len(list_arg) == 2:
+            print("** attribute name missing **")
+        elif len(list_arg) == 3:
+            print("** value missing **")
+
+        elif len(list_arg) == 4:
+            concat = list_arg[0] + '.' + list_arg[1]
+            for k, v in my_dictionnary.items():
+                if k == concat:
+                    setattr(v, list_arg[2], list_arg[3])
+                    storage.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
