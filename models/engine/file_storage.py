@@ -31,19 +31,20 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        from models import base_model
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'r', encoding='utf-8') as input_file:
-                jsoned_obj = {}
-                try:
-                    jsoned_obj = json.load(input_file)
-                except json.JSONDecodeError:
-                    pass
-                for key, value in jsoned_obj.items():
-                    class_name = value['__class__']
-                    class_obj = getattr(base_model, class_name)
+        from models.base_model import BaseModel
+        # from models.city import City
+        # from models.state import State
+        # from models.place import Place
+        # from models.review import Review
+        from models.user import User
+        # from models.amenity import Amenity
+        try:
+            with open(FileStorage.__file_path, "r", encoding='utf-8') as file:
+                data = json.loads(file.read())
+                for k in data.keys():
+                    v = data[k]
+                    FileStorage.__objects[k] = eval(v['__class__'])(**v)
 
-                    obj = class_obj(**value)
-                    self.__objects[key] = obj
-        else:
-            pass
+                return FileStorage.__objects
+        except:
+            return {}
