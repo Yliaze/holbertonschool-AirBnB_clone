@@ -39,7 +39,7 @@ class FileStorage:
         from models.user import User
         from models.amenity import Amenity
         try:
-            with open(FileStorage.__file_path, "r", encoding='utf-8') as file:
+            with open(FileStorage.__file_path, "r+w", encoding='utf-8') as file:
                 data = json.loads(file.read())
                 for k in data.keys():
                     v = data[k]
