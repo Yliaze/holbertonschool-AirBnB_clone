@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
                 obj = globals()[list_arg[0]]()
                 obj.save()
                 print(obj.id)
-            except:
+            except ValueError:
                 print("** class doesn't exist **")
 
     def do_show(self, args):
@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
                 instance = storage.all()
                 concat = list_arg[0] + '.' + list_arg[1]
                 print(instance[concat])
-            except:
+            except ValueError:
                 print("** no instance found **")
         else:
             print("** instance id missing **")
@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
                 dictionnary = storage.all()
                 del dictionnary[list_arg[0] + '.' + list_arg[1]]
                 storage.save()
-            except:
+            except ValueError:
                 print("** no instance found **")
         else:
             print("** instance id missing **")
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
         my_dictionnary = storage.all()
         try:
             concat = str(list_arg[0]) + "." + str(list_arg[1])
-        except:
+        except ValueError:
             concat = "None"
             list_arg.append("")
 

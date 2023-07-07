@@ -46,5 +46,5 @@ class FileStorage:
                     FileStorage.__objects[k] = eval(v['__class__'])(**v)
 
                 return FileStorage.__objects
-        except:
+        except ValueError:
             return {}
