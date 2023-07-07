@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 """contains the entry point of the command interpreter"""
-import cmd
 from models.base_model import BaseModel
+from models.city import City
+from models.state import State
+from models.place import Place
+from models.review import Review
 from models.user import User
-from models.engine import file_storage
+from models.amenity import Amenity
+import cmd
 from models import storage
 
 

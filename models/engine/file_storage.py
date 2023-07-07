@@ -15,8 +15,8 @@ class FileStorage:
     def all(self):
         """Returns the dictionary __objects"""
         return self.__objects
-    
-    def new(self, obj): 
+
+    def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id"""
         key = type(obj).__name__ + "." + obj.id
         self.__objects[key] = obj
@@ -32,12 +32,12 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects"""
         from models.base_model import BaseModel
-        # from models.city import City
-        # from models.state import State
-        # from models.place import Place
-        # from models.review import Review
+        from models.city import City
+        from models.state import State
+        from models.place import Place
+        from models.review import Review
         from models.user import User
-        # from models.amenity import Amenity
+        from models.amenity import Amenity
         try:
             with open(FileStorage.__file_path, "r", encoding='utf-8') as file:
                 data = json.loads(file.read())
