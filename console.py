@@ -99,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
         my_dictionnary = storage.all()
         try:
             concat = str(list_arg[0]) + "." + str(list_arg[1])
-        except KeyError:
+        except IndexError:
             concat = "None"
             list_arg.append("")
 
