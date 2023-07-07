@@ -70,7 +70,6 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     def do_all(self, args):
-
         dictionnary = storage.all()
         new_list = []
         if args == "":
@@ -78,17 +77,16 @@ class HBNBCommand(cmd.Cmd):
                 new_list.append(str(dictionnary[value]))
             print(new_list)
         else:
-            if args not in dictionnary:
+            if args not in HBNBCommand.__classes:
                 print("** class doesn't exist **")
-            for value in dictionnary:
-                if args == value:
+            else:
+                for value in dictionnary:
                     new_list.append(str(dictionnary[value]))
-                    print(new_list)
+                print(new_list)
 
     def do_update(self, args):
         """ Update an instance """
         list_arg = args.split(" ")
-        print("LIST DE PUTAIN D'ARGS = ", list_arg)
         my_dictionnary = storage.all()
         try:
             concat = str(list_arg[0]) + "." + str(list_arg[1])
