@@ -31,6 +31,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args=None):
+        """create an instance"""
         list_arg = args.split()
         if not list_arg:
             print("** class name missing **")
@@ -43,6 +44,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_show(self, args):
+        """print objects infos"""
         list_arg = args.split()
         if not list_arg:
             print("** class name missing **")
@@ -59,6 +61,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     def do_destroy(self, args):
+        """destroy an object"""
         list_arg = args.split()
         if not list_arg:
             print("** class name missing **")
@@ -75,6 +78,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     def do_all(self, args):
+        """list all objects"""
         dictionnary = storage.all()
         new_list = []
         if args == "":
