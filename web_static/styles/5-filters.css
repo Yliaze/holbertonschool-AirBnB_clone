@@ -1,0 +1,62 @@
+body div.container section.filters {
+    color: white;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    display: flex;
+}
+
+body div.container section.filters button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color:#FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: None;
+    border-radius: 4px;
+
+    /* position */
+    line-height: 50%;
+    margin: auto 30px auto auto;
+}
+
+body div.container section.filters button:hover {
+    opacity: 90%;
+}
+
+body div.container section.filters div.locations {
+    height: 100%;
+    width: 25%;
+    border-right: 1px solid #DDDDDD;
+
+    /* position */
+    margin-left: 50px;
+    
+}
+
+body div.container section.filters div.amenities {
+    height: 100%;
+    width: 25%;
+
+    /* position */
+    margin-left: 50px;
+}
+
+.filters h3 {
+    font-weight: 600;
+    color: black;
+    margin-bottom: 0;
+    color:#4D4D4D;
+
+    
+}
+
+.filters h4 {
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    margin-top: 0;
+    color:#4D4D4D;
+
+}
