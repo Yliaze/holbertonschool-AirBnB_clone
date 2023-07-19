@@ -1,0 +1,116 @@
+.places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: #FF5A5F 1px solid;
+    border-radius: 4px;
+
+    /* FlexBox for articles */
+    display: flex;
+    flex-direction: column;
+}
+
+.places ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.places h1 {
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-bottom: -10px;
+    font-size: 30px;
+}
+
+.places article h2 {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 5px;
+    padding-bottom: 30px;
+}
+
+.places li {
+    list-style-type: none;
+}
+
+.places .price_by_night {
+    color:#FF5A5F;
+    border: #FF5A5F solid 4px;
+    border-radius: 50%;
+    min-width: 60px;
+    height: 60px;
+    font-size: 30px;
+
+    /* Position for  */
+    align-self: flex-end;
+    position: absolute;
+
+    /* FlexBox for $ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+}
+
+.places .information {
+    height: 80px;
+    border-top:  #DDDDDD 1px solid;
+    border-bottom: #DDDDDD 1px solid;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.max_guest, .number_rooms, .number_bathrooms {
+    width: 100px;
+    position: relative;
+    
+    /* space for image */
+    padding-top: 50px;
+}
+
+.information .max_guest::before {
+    content: "";
+    background: url('../images/icon_group.png') no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: 25px;
+    height: 100px;
+    width: 100px;
+}
+
+.information .number_rooms::before {
+    content: "";
+    background: url('../images/icon_bed.png') no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: 25px;
+    height: 100px;
+    width: 100px;
+}
+
+.information .number_bathrooms::before {
+    content: "";
+    background: url('../images/icon_bath.png') no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: 25px;
+    height: 100px;
+    width: 100px;
+}
+
+.user {
+    margin-top: 15px;
+}
+
+.description {
+    min-height: 150px;
+}
