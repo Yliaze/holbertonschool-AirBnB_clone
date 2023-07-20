@@ -5,6 +5,9 @@
     border: #FF5A5F 1px solid;
     border-radius: 4px;
 
+    /* Move price where i want to */
+    position: relative;
+
     /* FlexBox for articles */
     display: flex;
     flex-direction: column;
@@ -26,8 +29,8 @@
 .places article h2 {
     font-size: 30px;
     text-align: center;
-    margin-top: 5px;
-    padding-bottom: 30px;
+    margin-top: 2px;
+    padding-bottom: 20px;
 }
 
 .places li {
@@ -42,9 +45,10 @@
     height: 60px;
     font-size: 30px;
 
-    /* Position for  */
+    /* Position for Price */
     align-self: flex-end;
     position: absolute;
+    top: 13px;
 
     /* FlexBox for $ */
     display: flex;
@@ -68,14 +72,14 @@
     position: relative;
     
     /* space for image */
-    padding-top: 50px;
+    padding-top: 55px;
 }
 
 .information .max_guest::before {
     content: "";
     background: url('../images/icon_group.png') no-repeat;
     position: absolute;
-    top: 0;
+    top: 8px;
     left: 0;
     right: 0;
     margin-left: 25px;
@@ -87,7 +91,7 @@
     content: "";
     background: url('../images/icon_bed.png') no-repeat;
     position: absolute;
-    top: 0;
+    top: 8px;
     left: 0;
     right: 0;
     margin-left: 25px;
@@ -99,7 +103,7 @@
     content: "";
     background: url('../images/icon_bath.png') no-repeat;
     position: absolute;
-    top: 0;
+    top: 8px;
     left: 0;
     right: 0;
     margin-left: 25px;
@@ -113,4 +117,9 @@
 
 .description {
     min-height: 150px;
+}
+
+.description p {
+    margin-top: 5px;
+    margin-bottom: 0;
 }
